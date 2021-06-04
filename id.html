@@ -5,6 +5,7 @@
             function f() {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", 'https://id.rambler.ru/api/v3/session/getRsidx', true);
+                xhr.withCredentials = true;
 
                 //Передаёт правильный заголовок в запросе
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
