@@ -2,20 +2,27 @@
     <head><title></title></head>
     <body>
         <script>
-            function getIframeContent(frameId) {
-                var frameObj = 
-                    document.getElementById(frameId);
+            function f() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", 'https://id.rambler.ru/api/v3/session/getRsidx', true);
 
-                var frameContent = frameObj.
-                    contentWindow.document.body.innerHTML;
-                    
-                alert("frame content : " + frameContent);
+                //Передаёт правильный заголовок в запросе
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {//Вызывает функцию при смене состояния.
+                    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                        // Запрос завершён. Здесь можно обрабатывать результат.
+                        alert(xhr.responseText);
+                    }
+                }
+                xhr.send("");
+                // xhr.send('string');
+                // xhr.send(new Blob());
+                // xhr.send(new Int8Array());
+                // xhr.send({ form: 'data' });
+                // xhr.send(document);            
             }
         </script>
-        <iframe width=600 height=600 name="myname" id="myid"></iframe>
-        <form target="myname" method="POST" action="https://id.rambler.ru/api/v3/session/getRsidx">
-            <input type="submit">
-        </form>
-        <input type="button" onclick="getIframeContent('myid')">
+        <input type="button" onclick="f()">
     </body>
 </html>
