@@ -1,11 +1,21 @@
 <html>
-<head>
-<title>
-</title>
-</head>
-<body>
-<iframe width=800 height=800 src="https://id.rambler.ru/api/v3/session/getRsidx"></iframe>
-<form method="POST" action="https://id.rambler.ru/api/v3/session/getRsidx">
-<input type="submit">
-</form>
-<body>
+    <head><title></title></head>
+    <body>
+        <script>
+            function getIframeContent(frameId) {
+                var frameObj = 
+                    document.getElementById(frameId);
+
+                var frameContent = frameObj.
+                    contentWindow.document.body.innerHTML;
+                    
+                alert("frame content : " + frameContent);
+            }
+        </script>
+        <iframe width=600 height=600 name="myname" id="myid"></iframe>
+        <form target="myname" method="POST" action="https://id.rambler.ru/api/v3/session/getRsidx">
+            <input type="submit">
+        </form>
+        <input type="button" onclick="getIframeContent('myid')">
+    </body>
+</html>
